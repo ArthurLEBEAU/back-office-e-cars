@@ -31,7 +31,7 @@ function LoginComponent() {
         content: "Vous vous êtes connecté avec succès",
         key: 1,
       });
-      navigate(`${"/cars"}`, { replace: true });
+      navigate(`${"/accueil/cars"}`, { replace: true });
     } catch (err) {
     }
   };

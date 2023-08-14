@@ -53,7 +53,6 @@ function FormCreateCars({ close }: any) {
     try {
       await addCar(values).unwrap();
     } catch (err) {
-      console.log(err)
     }
   };
   const openNotificationWithIcon = () => {

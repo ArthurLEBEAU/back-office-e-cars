@@ -14,7 +14,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Cars"],
     }),
-    updateCar: builder.mutation<{}, FormData>({
+    editCar: builder.mutation<{}, FormData>({
       query: ({ car, id }: any) => ({
         url: `/car/${id}`,
         method: "PATCH",
@@ -32,5 +32,5 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetCarsQuery, useAddCarMutation, useDeleteCarMutation } =
+export const { useGetCarsQuery, useAddCarMutation, useDeleteCarMutation, useEditCarMutation } =
   extendedApiSlice;

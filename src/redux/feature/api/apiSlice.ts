@@ -7,7 +7,7 @@ export const apiSlice = createApi({
     baseUrl: `${process.env.REACT_APP_API_URL}`,
     prepareHeaders: (headers, { getState }) => {
       const userInfo: any = (getState() as RootState).auth.userInfo;
-      const tokenLocalStorage = localStorage.getItem('totken')
+      const tokenLocalStorage = localStorage.getItem('token')
       if (userInfo) {
         headers.set("authorization", `Bearer ${userInfo.token}`);
       } else if (tokenLocalStorage) {

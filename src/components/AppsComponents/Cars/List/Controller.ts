@@ -11,6 +11,10 @@ interface Car {
   box: string;
   price_with_driver: number;
   price_no_driver: number;
+  image1: string;
+  image2: string;
+  image3: string;
+  image4: string;
 }
 export default function ControllerListCars() {
   const { data = [], isFetching, isError, error }: any = useGetCarsQuery(null);
@@ -28,6 +32,10 @@ export default function ControllerListCars() {
       box: item?.box,
       price_with_driver: item?.price_with_driver,
       price_no_driver: item?.price_no_driver,
+      image1: item?.image1,
+      image2: item?.image2,
+      image3: item?.image3,
+      image4: item?.image4,
     }));
 
 
