@@ -74,7 +74,7 @@ const Logo = ({ collapsed, className, addClass }: any) => {
             animate={!collapsed ? "showLowLogo" : "hiddenLowLogo"}
             className={`text-2xl`}
           >
-            Logo
+            E-CARS
           </motion.span>
         </AnimatePresence>
       </motion.div>

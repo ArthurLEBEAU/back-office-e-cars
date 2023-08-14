@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
+import CarsPage from "./Cars";
 import ExamplePage from "./Examples/ExamplePage";
-import HomePage from "./Home/HomePage";
 
 function AppPages() {
   return (
     <Routes>
-      <Route index element={<HomePage />} />
-      <Route path="example/*" element={<ExamplePage />} />
+      <Route index element={<CarsPage />} />
+      <Route path="requests/*" element={<ExamplePage />} />
     </Routes>
   );
 }

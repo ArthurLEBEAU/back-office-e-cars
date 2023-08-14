@@ -7,14 +7,15 @@ export const apiSlice = createApi({
     baseUrl: `${process.env.REACT_APP_API_URL}`,
     prepareHeaders: (headers, { getState }) => {
       const userInfo: any = (getState() as RootState).auth.userInfo;
+      const tokenLocalStorage = localStorage.getItem('totken')
       if (userInfo) {
-        headers.set("authorization", `Bearer ${userInfo.jwt.token}`);
+        headers.set("authorization", `Bearer ${userInfo.token}`);
+      } else if (tokenLocalStorage) {
+        headers.set("authorization", `Bearer ${tokenLocalStorage}`);
       }
       return headers;
     },
-    credentials: "include",
   }),
-
-  tagTypes: ["exemple"],
+  tagTypes: ["Request", "Cars"],
   endpoints: (builder) => ({}),
 });

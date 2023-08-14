@@ -1,4 +1,4 @@
-import { Form, Select, Input, Radio, DatePicker } from "antd";
+import { Form, Select, Input, Radio, DatePicker, Upload, Button } from "antd";
 // import moment from "moment";
 import { useState } from "react";
 // import AText from "./Text";
@@ -20,6 +20,10 @@ interface InputProps {
   addonAfter?: any;
   onChange?: any;
   visibilityToggle?: boolean;
+}
+
+interface UploadFileProps {
+  count: number;
 }
 
 // interface UploadFileProps {
@@ -295,14 +299,69 @@ export const APInput = ({
   name,
   placeholder,
   visibilityToggle,
+  size,
   rules,
 }: InputProps) => {
   return (
     <Form.Item label={label} rules={rules} name={name}>
       <Input.Password
+      size={size}
         visibilityToggle={visibilityToggle}
         placeholder={placeholder}
       />
     </Form.Item>
   );
 };
+
+export function AFileUpload({
+  initialValue,
+  label,
+  count,
+  name,
+  rules,
+  error,
+  stateForm,
+  placeholder,
+}: UploadFileProps & InputProps) {
+  const props = {
+    name: "file",
+    accept: ".jpeg, .png",
+    multiple: false,
+    headers: {
+      authorization: "authorization-text",
+    },
+    beforeUpload: () => {
+      return false;
+    },
+  };
+  return (
+    <Form.Item
+      label={label}
+      rules={!stateForm !== undefined ? rules : null}
+      validateStatus={error && error?.length > 0 ? "error" : undefined}
+      help={error && error.length > 0 ? error[0].message : null}
+      name={name}
+      valuePropName={name}
+    >
+      <Upload
+        listType="picture"
+        defaultFileList={
+          stateForm !== undefined
+            ? [
+                {
+                  uid: "1",
+                  name: `${initialValue == null ? "Aucune photo" : ""}`,
+                  thumbUrl: `${initialValue == null ? "" : initialValue}`,
+                  status: "done",
+                },
+              ]
+            : []
+        }
+        {...props}
+        maxCount={count}
+      >
+        <Button type="dashed">{placeholder}</Button>
+      </Upload>
+    </Form.Item>
+  );
+}

@@ -11,16 +11,16 @@ export const navConfig: {
 }[] = [
   {
     permissions: [Permissions.ADMINISTRATEUR, Permissions.SUPER_USER],
-    label: "Accueil",
-    link: "/accueil",
+    label: "Voitures",
+    link: "/cars",
     icon: "home_app_logo",
-    key: "accueil",
+    key: "cars",
   },
   {
     permissions: [Permissions.ADMINISTRATEUR, Permissions.SUPER_USER],
-    label: "Exemple de pages",
-    link: "/accueil/example",
+    label: "Requêtes",
+    link: "/requests",
     icon: "add_link",
-    key: "example",
+    key: "request",
   },
 ];

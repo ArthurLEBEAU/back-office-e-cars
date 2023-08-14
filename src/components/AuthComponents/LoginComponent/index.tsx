@@ -5,24 +5,35 @@ import {
 } from "@components/SharedComponents/AtomicComponents/Input";
 import AText from "@components/SharedComponents/AtomicComponents/Text";
 import Logo from "@components/SharedComponents/Logo/Logo";
-import { Card, Form } from "antd";
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useLoginMutation } from "@redux/feature/services/loginSlice";
+import { setUserInfo } from "@redux/feature/slices/authSlice";
+import { Alert, Card, Form, Typography, message } from "antd";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 function LoginComponent() {
-  let loading = false;
-
+  const { Paragraph } = Typography;
+  const dispatch = useDispatch();
+  const [login, { isLoading, isSuccess, isError, error }]: any =
+    useLoginMutation();
   const navigate = useNavigate();
   const Validate = async (formData: any) => {
     try {
-      loading = true;
-      //   const user = await login({
-      //     username: formData.username,
-      //     password: formData.password,
-      //   }).unwrap();
-      //   dispatch(setUserInfo(user));
-      localStorage.setItem("connected", "true");
-      navigate(`${"/accueil"}`);
-    } catch (err) {}
+      const user = await login({
+        username: formData.username,
+        password: formData.password,
+      }).unwrap();
+      dispatch(setUserInfo({
+        'username': formData.username,
+        'token': user.access_token,
+      }));
+      localStorage.setItem("token", user.access_token);
+      message.success({
+        content: "Vous vous êtes connecté avec succès",
+        key: 1,
+      });
+      navigate(`${"/cars"}`, { replace: true });
+    } catch (err) {
+    }
   };
 
   return (
@@ -44,14 +55,13 @@ function LoginComponent() {
           <div className="w-1/2 hidden -mt-40  lg:block space-y-10">
             <AText size="high+3" bold>
               <span className="text-white">
-                IL ETAIT UNE FOIS LE BLANK PROJECT :)
+                Gérez Vos Ventes avec Simplicité
               </span>
             </AText>
 
             <div className="w-2/3">
               <AText className="text-white" size="high">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatem perspiciatis voluptates iusto nesciunt.
+                Optimisez votre expérience de vente de voitures en ligne grâce à notre interface conviviale.
               </AText>
             </div>
           </div>
@@ -70,16 +80,18 @@ function LoginComponent() {
               >
                 <ATInput
                   type="text"
-                  label="Adresse mail ou nom d'utilisateur"
+                  label="Nom d'utilisateur"
                   name="username"
+                  size="large"
                   rules={[
-                    { required: true, message: "Veuillez entrer votre email" },
+                    { required: true, message: "Veuillez entrer votre username" },
                   ]}
                 />
 
                 <APInput
                   label="Mot de passe"
                   name="password"
+                  size="large"
                   rules={[
                     {
                       required: true,
@@ -89,7 +101,7 @@ function LoginComponent() {
                 />
                 <div className="space-y-5">
                   <AButton
-                    loading={loading}
+                    loading={isLoading}
                     className="w-full justify-center"
                     action={null}
                     type="primary"
@@ -102,20 +114,37 @@ function LoginComponent() {
                 </div>
               </Form>
 
+              {isSuccess ? (
+                <>
+                  <Alert
+                    message="Succès"
+                    description={"connecté avec succès"}
+                    type="success"
+                  />
+                </>
+              ) : isError ? (
+                <Alert
+                  message="Echec"
+                  description={
+                    <Paragraph>
+                      {error?.status === "PARSING_ERROR"
+                        ? error?.data
+                        : error?.status === 400
+                          ? error?.data.message.replace(
+                            "Username",
+                            "L'email/Le nom d'utilisateur"
+                          )
+                          : "Une erreur serveur est survenue, veuillez réessayer plus tard"}
+                    </Paragraph>
+                  }
+                  type="error"
+                />
+              ) : null}
+
               <div className="flex-col space-y-3 items-center text-center">
                 <AText>
-                  Copyright © 2022 Pronotaris Inc. All rights reserved.
+                  Copyright © 2023 E-CARS. All rights reserved.
                 </AText>
-
-                <span className="flex items-center space-x-3 ">
-                  <Link to="/conditions-generales-de-services">
-                    Conditions générales de services
-                  </Link>
-                  <span>|</span>
-                  <Link to="/politique-de-confidentialite">
-                    Politique de confidentialité
-                  </Link>
-                </span>
               </div>
             </div>
           </Card>

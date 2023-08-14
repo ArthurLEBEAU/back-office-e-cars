@@ -2,40 +2,39 @@ import { UserOutlined } from "@ant-design/icons";
 import { ATButton } from "@components/SharedComponents/AtomicComponents/Button";
 import AText from "@components/SharedComponents/AtomicComponents/Text";
 import MaterialIcon from "@components/SharedComponents/Icons/MaterialIcons";
-import { Avatar, Dropdown, Menu } from "antd";
+import { apiSlice } from "@redux/feature/api/apiSlice";
+import { logOutState } from "@redux/feature/slices/authSlice";
+import { Avatar, Dropdown, Menu, message } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const NavProfile = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state: any) => state.auth.userInfo);
+  const handleLogout = () => {
+    try {
+      localStorage.setItem("connected", "false");
+      localStorage.removeItem("token");
+      message.success({
+        content: "Vous vous êtes déconnecter avec succès",
+        key: 1,
+      });
+      navigate(`/`, { replace: true });
+      dispatch(apiSlice.util.resetApiState());
+      dispatch(logOutState());
+    } catch (err) {}
+  };
   const menu = (
     <Menu
       items={[
-        {
-          label: (
-            <span
-              onClick={() => navigate("/dashboard/mon-profil")}
-              className="space-x-3 py-1 flex items-center cursor-pointer"
-            >
-              <MaterialIcon icon="account_circle" /> <span>Mon profil</span>
-            </span>
-          ),
-          key: "0",
-        },
-        {
-          label: (
-            <span className="space-x-3 py-1 flex items-center cursor-pointer">
-              <MaterialIcon icon="help" /> <span>Support</span>
-            </span>
-          ),
-          key: "1",
-        },
         {
           type: "divider",
         },
         {
           label: (
             <span
-              onClick={() => navigate("/")}
+              onClick={handleLogout}
               className="space-x-3 py-1 flex items-center cursor-pointer"
             >
               <MaterialIcon icon="logout" /> <span>Déconnexion</span>
@@ -60,7 +59,9 @@ const NavProfile = () => {
               />
               <div className="hidden lg:flex items-center">
                 <div className="flex  flex-col -space-y-1">
-                  <AText bold>{/* {user.name} */} Cissé Kouakou</AText>
+                  <AText bold>
+                  {userInfo?.username ?? 'Username'}
+                  </AText>
                   <AText className="text-primary" size="mini+2">
                     {/* {user.fonction} */} Administrateur
                   </AText>

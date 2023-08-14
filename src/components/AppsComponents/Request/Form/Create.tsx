@@ -9,7 +9,7 @@ import {
 import { useAddExempleMutation } from "@redux/feature/services/exampleService";
   import { Form, Alert, notification } from "antd";
   import { useEffect } from "react";
-
+  
   function CreateExempleComponent({ close }: any) {
     const [addExemple, { isLoading, isError, error, isSuccess }]: any =
     useAddExempleMutation();
@@ -22,23 +22,23 @@ import { useAddExempleMutation } from "@redux/feature/services/exampleService";
           }).unwrap();
         } catch (err) {}
       };
-
-
-
-
+  
+    
+   
+  
     const openNotificationWithIcon = () => {
       notification["success"]({
         message: "Ajout effectué",
         description: "L'ajout de la zone a été effectué",
       });
     };
-
+  
     useEffect(() => {
       if (isSuccess) {
         close();
         openNotificationWithIcon();
       }
-
+  
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
 
@@ -75,7 +75,7 @@ import { useAddExempleMutation } from "@redux/feature/services/exampleService";
               Enregistrer
             </AButton>
           </div>
-
+  
           <div className="mt-5">
             {isError && error?.status !== 422 ? (
               <Alert
@@ -88,6 +88,7 @@ import { useAddExempleMutation } from "@redux/feature/services/exampleService";
         </Form>
       </div>
     ) }
-
-
+          
+  
   export default CreateExempleComponent;
+  
