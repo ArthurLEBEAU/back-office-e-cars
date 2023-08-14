@@ -1,0 +1,313 @@
+.ant-menu-title-content,
+.ant-menu-submenu-title {
+  display: flex;
+  align-items: center;
+}
+.ant-drawer-header-title {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.ant-table-thead > tr > th {
+  background: hsl(0deg 0% 100%) !important;
+}
+/* .ant-menu-title-content {
+  padding-left: 20px;
+} */
+
+.ant-table-footer {
+  background-color: transparent;
+}
+
+.ant-pagination {
+  position: absolute;
+  bottom: -5px;
+  right: 0;
+}
+
+.drawer-control
+  > .ant-drawer-content-wrapper
+  > .ant-drawer-content
+  > .ant-drawer-wrapper-body
+  > .ant-drawer-body {
+  padding: 0;
+  padding-top: 10px;
+  overflow: hidden;
+}
+.ant-table-thead > tr > th {
+  background: transparent;
+}
+
+.ant-menu-item .ant-menu-item-icon,
+.ant-menu-submenu-title .ant-menu-item-icon,
+.ant-menu-item .anticon,
+.ant-menu-submenu-title .anticon {
+  font-size: 20px !important;
+}
+/* .ant-input-suffix {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+} */
+
+/* CollapseComponent */
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  background: white;
+}
+.ant-collapse {
+  border: 0;
+}
+/* .ant-collapse > .ant-collapse-item {
+  border-bottom: 2px solid #828282a9;
+} */
+/* regular style  */
+.side-nav {
+  height: calc(100vh - 53px);
+  position: fixed;
+  top: 60px;
+  box-shadow: 0 1px 4px -1px rgb(0 0 0 / 15%);
+  z-index: 999;
+  direction: ltr;
+  background-color: hsl(0deg 0% 100%);
+  padding-top: 20px;
+  overflow-y: overlay;
+}
+
+.ant-steps-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5px;
+  width: 100%;
+  height: 100%;
+}
+.ant-collapse-content {
+  color: hsl(0deg 0% 0% / 85%);
+  background-color: hsl(0deg 0% 100%);
+  border-top: 0px solid hsl(0deg 0% 85%);
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 12px 0px;
+}
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 0 !important;
+}
+.actetabs > .ant-tabs-nav {
+  width: 13rem;
+}
+
+.actetabs
+  > .ant-tabs-nav
+  > .ant-tabs-nav-wrap
+  > .ant-tabs-nav-list
+  > .ant-tabs-nav-add::before {
+  content: "Ajouter un bureau ";
+  position: relative;
+  left: -10px;
+}
+.actetabs
+  > .ant-tabs-nav
+  > .ant-tabs-nav-wrap
+  > .ant-tabs-nav-list
+  > .ant-tabs-nav-add
+  > .anticon {
+  position: relative;
+  left: 2px;
+  bottom: 3px;
+}
+.ant-tabs-card.ant-tabs-left > .ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-card.ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab {
+  padding: 12px 22px !important;
+}
+.ant-tabs-nav-add {
+  padding: 12px 22px !important;
+}
+.ant-switch-checked {
+  background: #006600 !important;
+}
+
+.ant-switch {
+  margin: 0;
+  padding: 0;
+  color: hsl(0deg 0% 0% / 85%);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum", "tnum";
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 44px;
+  height: 22px;
+  line-height: 22px;
+  vertical-align: middle;
+  background-image: linear-gradient(
+      to right,
+      hsl(0deg 0% 0% / 25%),
+      hsl(0deg 0% 0% / 25%)
+    ),
+    linear-gradient(to right, hsl(0deg 0% 100%), hsl(0deg 0% 100%));
+  border: 0;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ant-dropdown-menu-item-only-child {
+  color: #006600 !important;
+}
+.ant-dropdown-menu-item-danger {
+  color: #f5222d !important;
+}
+.ant-dropdown-menu-item-danger:hover {
+  color: #f5222d !important;
+  background-color: #f5222d34 !important;
+}
+/* scrollbar pour forefox */
+
+/* @-moz-document url-prefix() {
+  .side-nav {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    scrollbar-color: gray transparent;
+  }
+}
+.side-nav::-webkit-scrollbar {
+  display: none;
+}
+.side-nav:hover::-webkit-scrollbar {
+  width: 2px;
+  display: block;
+} */
+
+.side-nav::-webkit-scrollbar-track {
+  background: transparent;
+  width: 50px;
+}
+.side-nav::-webkit-scrollbar-thumb {
+  background-color: rgb(216, 216, 216);
+  border-radius: 20px;
+  height: 50vh;
+}
+.app-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 4px -1px rgb(0 0 0 / 15%);
+}
+.app-content {
+  /* padding: 25px; */
+  padding-bottom: 0;
+  margin-top: 91px;
+  margin-left: 50px;
+  margin-right: 2rem;
+  min-height: calc(100vh - 91px) !important;
+  position: relative;
+}
+.collapsed {
+  padding-left: 215px;
+}
+.no-collapsed {
+  padding-left: 80px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .collapsed,
+  .no-collapsed {
+    padding-left: 0;
+  }
+
+  .app-content {
+    /* padding: 25px; */
+    padding-bottom: 0;
+    margin-top: 91px;
+    margin-left: 20px;
+    margin-right: 2rem;
+    min-height: calc(100vh - 91px);
+    position: relative;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
+  width: 250px;
+  background: rgba(90, 90, 90);
+}
+
+::-webkit-scrollbar-track {
+  width: 100px;
+  background: transparent;
+}
+.no-scroolbar::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+body {
+  overflow: overlay;
+}
+
+.search-input {
+  /* border-bottom: 1px gray solid; */
+  padding: 0.5rem;
+  border-top: 0px !important;
+  border-top: 1px rgb(0, 0, 0) !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  box-shadow: none !important;
+}
+
+.search-input:focus {
+  /* border-bottom: 1px gray solid; */
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  box-shadow: none !important;
+}
+
+.search-input:hover {
+  /* border-bottom: 1px gray solid; */
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
+  box-shadow: none !important;
+
+  /* border: 0; */
+}
+
+.tablehome
+  > .ant-table-wrapper
+  > .ant-spin-nested-loading
+  > .ant-spin-container
+  > div
+  > .ant-table-container
+  > .ant-table-content
+  > table
+  > tbody
+  > .ant-table-placeholder {
+  height: 508px;
+}
+
+.radioOptions > span:nth-child(2) {
+  flex-grow: 1;
+}
+
+.radioOptions {
+  margin-right: 0 !important;
+}
