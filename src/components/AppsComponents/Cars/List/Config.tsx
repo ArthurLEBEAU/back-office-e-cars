@@ -2,10 +2,19 @@ import AText from "@components/SharedComponents/AtomicComponents/Text";
 import { useDeleteCarMutation } from "@redux/feature/services/carsSlice";
 import { setSearch } from "@redux/feature/slices/search_paginate_slice";
 import antdutils from "@utils/systemutils/antdutils";
-import { Button, Drawer, Input, Popconfirm, Space, notification } from "antd";
+import { Button, Drawer, Input, Popconfirm, Space, notification, Row, Col, Carousel, Image } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import FormUpdateCars from "../Form/Update";
+
+
+const contentStyle: React.CSSProperties = {
+  height: '160px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+};
 
 export const ListConfigCars: any = [
   {
@@ -57,7 +66,7 @@ export const ListConfigCars: any = [
         <AText>Actions</AText>
       </div>
     ),
-    dataIndex: "Régions",
+    dataIndex: "Actions",
     render: (
       _: any,
       record: any
@@ -134,30 +143,103 @@ function AccessFiche({ data, title }: { data: any, title: string }) {
           </AText>
         }
       >
-        <div className="px-10 mb-3">
-          <span className="font-bold">Modèle : </span> {data.model}
+        <Row gutter={[16, 16]}>
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Modèle</AText>
+              <AText>{data.model}</AText>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Marque</AText>
+              <AText>{data.brand}</AText>
+            </div>
+          </Col>
+
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Année</AText>
+              <AText>{data.year}</AText>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Moteur</AText>
+              <AText>{data.motor}</AText>
+            </div>
+          </Col>
+
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Type</AText>
+              <AText>{data.type}</AText>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Kilométrage</AText>
+              <AText>{data.mileage}</AText>
+            </div>
+          </Col>
+
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Prix sans chauffeur </AText>
+              <AText>{data.price_no_driver}</AText>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Prix avec chauffeur </AText>
+              <AText>{data.price_with_driver}</AText>
+            </div>
+          </Col>
+        </Row>
+        <div className="mt-5">
+          <Carousel autoplay>
+            <div>
+              <h3 style={contentStyle}>
+                <Image
+                  width={200}
+                  src={data.image1}
+                  style={{ marginTop: '10px' }}
+                />
+              </h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}>
+                <Image
+                  width={200}
+                  src={data.image2}
+                  style={{ marginTop: '10px' }}
+                />
+              </h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}><Image
+                width={200}
+                src={data.image3}
+                style={{ marginTop: '10px' }}
+              /></h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}>
+                <Image
+                  width={200}
+                  src={data.image4}
+                  style={{ marginTop: '10px' }}
+                />
+              </h3>
+            </div>
+          </Carousel>
         </div>
-        <div className="px-10 mb-3">
-          <span className="font-bold">Marque : </span> {data.brand}
-        </div>
-        <div className="px-10 mb-3">
-          <span className="font-bold">Année : </span> {data.year}
-        </div>
-        <div className="px-10 mb-3">
-          <span className="font-bold">Moteur : </span> {data.motor}
-        </div>
-        <div className="px-10 mb-3">
-          <span className="font-bold">Type : </span> {data.type}
-        </div>
-        <div className="px-10 mb-3">
-          <span className="font-bold">Kilométrage : </span> {data.mileage}
-        </div>
-        <div className="px-10 mb-3">
-          <span className="font-bold">Prix sans chauffeur : </span> {data.price_no_driver}
-        </div>
-        <div className="px-10 mb-3">
-          <span className="font-bold">Prix avec chauffeur : </span> {data.price_with_driver}
-        </div>
+
+      {/* <div className="flex items-center justify-center space-x-8">
+        <ModalDeleteExemple close={() => console.log('dd')} id={data.id} button />
+        <ModalDeleteExemple close={() => console.log('dd')} id={data.id} button />
+      </div> */}
+
       </Drawer>
       <Drawer
         width={600}

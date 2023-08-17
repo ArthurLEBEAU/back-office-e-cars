@@ -2,45 +2,22 @@ import { apiSlice } from "../api/apiSlice";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getTodos: builder.query({
-      query: () => "/todos",
+    getRequest: builder.query({
+      query: () => "/request",
       providesTags: ["Request"],
     }),
-    addTodo: builder.mutation({
-      query: (todo) => ({
-        url: "/todos",
-        method: "POST",
-        body: todo,
-      }),
-      invalidatesTags: ["Request"],
-    }),
-    markAllCompleted: builder.mutation({
-        query: () => ({
-          url: "/todos/mark-all-completed",
-          method: "POST",
-        }),
-        invalidatesTags: ["Request"],
-      }),
-      clearAllCompleted: builder.mutation({
-        query: () => ({
-          url: "/todos/clear-completed",
-          method: "POST",
-        }),
-        invalidatesTags: ["Request"],
-      }),
-    updateTodo: builder.mutation({
-      query: (todo) => ({
-        url: `/todos/${todo.id}`,
-        method: "PATCH",
-        body: todo,
-      }),
-      invalidatesTags: ["Request"],
-    }),
-    deleteTodo: builder.mutation({
-      query: ({ id }) => ({
-        url: `/todos/${id}`,
+    cancelRequest: builder.mutation({
+      query: (id: number) => ({
+        url: `/request/${id}`,
         method: "DELETE",
-        body: id,
+      }),
+      invalidatesTags: ["Request"],
+    }),
+    confirmRequest: builder.mutation({
+      query: ({ request, id }: any) => ({
+        url: `/request/${id}`,
+        method: "PATCH",
+        body: request,
       }),
       invalidatesTags: ["Request"],
     }),
@@ -48,10 +25,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetTodosQuery,
-  useAddTodoMutation,
-  useMarkAllCompletedMutation,
-  useClearAllCompletedMutation,
-  useUpdateTodoMutation,
-  useDeleteTodoMutation,
+  useGetRequestQuery,
+  useCancelRequestMutation,
+  useConfirmRequestMutation,
 } = extendedApiSlice;

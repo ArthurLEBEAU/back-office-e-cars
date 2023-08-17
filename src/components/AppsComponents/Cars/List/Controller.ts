@@ -1,6 +1,6 @@
 import { useGetCarsQuery } from "@redux/feature/services/carsSlice";
 
-interface Car {
+export interface Car {
   id: number;
   model: string;
   brand: string;

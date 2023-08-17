@@ -29,7 +29,6 @@ function BodyExampleList() {
             )}
           </div>
         )}
-
       />
     </ConfigProvider>
   );

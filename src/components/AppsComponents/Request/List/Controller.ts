@@ -1,81 +1,45 @@
-import {
-  useGetExemplebyNameQuery,
-  useGetExemplesQuery,
-} from "@redux/feature/services/exampleService";
-import { useSelector } from "react-redux";
+import { Car } from "@components/AppsComponents/Cars/List/Controller";
+import { useGetRequestQuery } from "@redux/feature/services/requestSlice";
 
-interface Example {
-  id: number;
+interface Client {
   name: string;
-  description: string;
-  created_at: string;
+  email: string;
+  phone: string;
 }
-export default function ExampleListController() {
-  //Selector
-  const paginate = useSelector(
-    (state: any) => state.searchAndPaginate.paginate
-  );
-  const nameSearch = useSelector(
-    (state: any) => state.searchAndPaginate.search
-  );
-
-  //block useGetZoneByNameQuery
-  const skip = nameSearch === "" ? true : false;
-
+interface Request {
+  id: number;
+  outOfDate: string;
+  comeBackDate: string;
+  state: string;
+  client: Client;
+  car: Car;
+}
+export default function ControllerListRequest() {
   const {
     data = [],
     isFetching,
     isError,
     error,
-  }: any = useGetExemplesQuery(paginate);
+  }: any = useGetRequestQuery(null);
 
-  const filteredListExemple: never[] =
+  const filteredList: never[] =
     data &&
-    data.map((item: Example) => ({
+    data.map((item: Request) => ({
       id: item?.id,
-      name: item?.name,
-      description:
-        item?.description === null ? "Aucune description" : item?.description,
-      creation: !item?.created_at
-        ? "Pas de date"
-        : item?.created_at.substring(0, 10).split("-").reverse().join("/"),
+      outOfDate: item?.outOfDate,
+      client_phone: item?.client.phone,
+      client_name: item?.client.name,
+      car_model: item?.car.model,
+      comeBackDate: item?.comeBackDate,
+      state: item?.state,
+      client: item?.client,
+      car: item?.car,
     }));
-
-  const params = {};
-  //   data && data.meta;
-
-  const {
-    data: dataSearched = [],
-    isFetching: isFetchingSearch,
-    isError: isErrorSearched,
-    error: errorSearched,
-  }: any = useGetExemplebyNameQuery(nameSearch, { skip });
-
-  const filteredListComiteDeBaseSearched: never[] = [];
-  dataSearched &&
-    dataSearched.map((item: Example) => ({
-      id: item?.id,
-      name: item?.name,
-      description:
-        item?.description === null ? "Aucune description" : item?.description,
-      creation: !item?.created_at
-        ? "Pas de date"
-        : item?.created_at.substring(0, 10).split("-").reverse().join("/"),
-    }));
-
-  const DataList = skip
-    ? filteredListExemple
-    : filteredListComiteDeBaseSearched;
-  const Loading = skip ? isFetching : isFetchingSearch;
-  const Error = skip ? isError : isErrorSearched;
-  const errorData = skip ? error : errorSearched;
 
   return {
-    DataList,
-    Loading,
-    Error,
-    errorData,
-    params,
-    skip,
+    filteredList,
+    isFetching,
+    isError,
+    error,
   };
 }

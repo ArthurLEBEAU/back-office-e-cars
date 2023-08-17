@@ -4,6 +4,7 @@ import MaterialIcon from "../Icons/MaterialIcons";
 interface ButtonProps {
   loading?: boolean;
   children?: any;
+  extra?: any;
   icon?: string;
   size?: string;
   action?: any;
@@ -12,13 +13,13 @@ interface ButtonProps {
 }
 interface RequiredButtonProps {
   type?:
-    | "link"
-    | "text"
-    | "primary"
-    | "ghost"
-    | "default"
-    | "dashed"
-    | undefined;
+  | "link"
+  | "text"
+  | "primary"
+  | "ghost"
+  | "default"
+  | "dashed"
+  | undefined;
 }
 
 interface TypeTextButtonProps {
@@ -29,16 +30,18 @@ export function AButton({
   children,
   icon,
   type,
+  extra,
   action,
   htmlType,
   className,
 }: RequiredButtonProps & ButtonProps) {
   return (
     <Button
+      {...extra}
       onClick={action}
       type={type ?? "primary"}
       loading={loading}
-      htmlType={ htmlType ?? "button"}
+      htmlType={htmlType ?? "button"}
       icon={icon ? <MaterialIcon icon={icon} /> : null}
       className={`${className} px-4 py-2 h-auto rounded-md flex items-center space-x-3 `}
     >
