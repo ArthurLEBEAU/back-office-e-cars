@@ -1,4 +1,4 @@
-import AnimateAppears from "@components/SharedComponents/MotionComponents/AnimateAppears";
+import PersistLogin from "@components/System/PersistLogin";
 import Redirect from "@components/System/Redirect";
 import AppLayout from "@layouts/AppLayout";
 import AuthLayout from "@layouts/AuthLayout";
@@ -17,19 +17,15 @@ const PagesView = () => {
       {screens.length > 1 || screens.length === 0 ? (
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<AuthLayout />} />
-            <Route
-              path="*"
-              element={<AnimateAppears children={<UnkownPage />} />}
-            />
-            <Route path="/" element={<Redirect />} />
-            <Route path="/accueil/*" element={<AppLayout />} />
-            {/* <Route
-              path="non-autorise"
-              element={<AnimateAppears children={<Unauthorized />} />}
-            /> */}
+            <Route path='/auth' element={<AuthLayout />} />
+            <Route path="*" element={<UnkownPage />} />
+            <Route element={<PersistLogin />}>
+              <Route path="/" element={<Redirect />} />
+              <Route path="/dashboard/*" element={<AppLayout />} />
+            </Route>
           </Route>
         </Routes>
+
       ) : (
         <ScreenNotSupported />
       )}

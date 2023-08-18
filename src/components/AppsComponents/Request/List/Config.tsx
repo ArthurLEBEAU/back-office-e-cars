@@ -167,16 +167,39 @@ function AccessFiche({ data, title }: { data: any, title: string }) {
             </div>
           </Col>
 
-          <Col span={12}>
-            <div className="space-y-1">
-              <AText bold>Option</AText>
-              <AText>Avec chauffeur/ sans chauffeur</AText>
-            </div>
-          </Col>
+
           <Col span={12}>
             <div className="space-y-1">
               <AText bold>Statut</AText>
               <Tag color={data.state === 'pending' ? 'magenta' : data.state === 'declined' ? 'geekblue' : 'green'}>{data.state === 'pending' ? 'En attente' : data.state === 'declined' ? 'Réfusé' : 'Accepté'}</Tag>
+            </div>
+          </Col>
+
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Chauffeur ?</AText>
+              <Tag color="volcano">Non</Tag>
+            </div>
+          </Col>
+
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Livraison ?</AText>
+              <Tag color="volcano">Non</Tag>
+            </div>
+          </Col>
+
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Sortie de ville ?</AText>
+              <Tag color="purple">Oui</Tag>
+            </div>
+          </Col>
+
+          <Col span={12}>
+            <div className="space-y-1">
+              <AText bold>Estimation de tarif</AText>
+              <AText>1 500 000 FCFA</AText>
             </div>
           </Col>
 

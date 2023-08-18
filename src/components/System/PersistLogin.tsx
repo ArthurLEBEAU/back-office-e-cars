@@ -1,14 +1,15 @@
-import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 
-const RedirectComponent = () => {
-    let location = useLocation();
+const PersistLogin = () => {
     const userInfo = useSelector((state: any) => state.auth.userInfo);
     const tokenLocalStorage = localStorage.getItem('token')
+    let location = useLocation();
+
     return (
         <>
             {userInfo || tokenLocalStorage ? (
-                <Navigate to={`/dashboard/cars`} state={{ from: location }} replace />
+                <Outlet />
             ) : (
                 <Navigate to={`/auth`} state={{ from: location }} replace />
             )}
@@ -16,4 +17,4 @@ const RedirectComponent = () => {
     );
 };
 
-export default RedirectComponent;
+export default PersistLogin;

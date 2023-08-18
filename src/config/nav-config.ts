@@ -12,14 +12,14 @@ export const navConfig: {
   {
     permissions: [Permissions.ADMINISTRATEUR, Permissions.SUPER_USER],
     label: "Voitures",
-    link: "/accueil/cars",
+    link: "/dashboard/cars",
     icon: "local_taxi",
     key: "cars",
   },
   {
     permissions: [Permissions.ADMINISTRATEUR, Permissions.SUPER_USER],
     label: "Requêtes",
-    link: "/accueil/requests",
+    link: "/dashboard/requests",
     icon: "request_page",
     key: "requests",
   },

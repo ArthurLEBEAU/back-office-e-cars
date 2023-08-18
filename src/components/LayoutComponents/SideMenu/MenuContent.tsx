@@ -148,7 +148,6 @@ function MenuContent(props: any) {
     <div className="flex relative flex-col h-full justify-around">
       <SideNavContent />
       <div className=" bottom-0 absolute left-0 right-0 ">
-        {/* <Menu mode="inline" selectedKeys={[activeKey]} items={footerMenu} /> */}
       </div>
     </div>
   );
