@@ -64,58 +64,57 @@ function SideNavContent(props: any) {
         <div onClick={() => closeMobileNav()}>
           <Link to={`${item.link ?? "#"}`}>{item.label}</Link>
         </div>
-      ) : // item.type && collapsed
-      false ? null : (
+      ) : (
         <span className={item.type && "font-bold"}>{item.label}</span>
       ),
       item.key,
       <MaterialIcon icon={item.icon} />,
       item.type || undefined,
       item.subLink &&
-        item.subLink.map((subitem: any) =>
-          getItem(
-            fonction,
-            subitem.permissions,
-            subitem.link ? (
-              <div className="p-3" onClick={() => closeMobileNav()}>
-                <Link to={`${subitem.link ?? "#"}`}>{subitem.label}</Link>
-              </div>
-            ) : item.type && collapsed ? null : (
-              <span className="p-3">{subitem.label}</span>
-            ),
-            subitem.key,
-            <>
-              <div className="flex items-center space-x-3">
-                <MaterialIcon icon={subitem.icon} />
-                {!item.type && collapsed ? <span>{subitem.label}</span> : null}
-              </div>
-            </>,
-            subitem.type || undefined,
-            subitem.subLink &&
-              subitem.subLink.map((subSubitem: any) =>
-                getItem(
-                  fonction,
-                  subSubitem.permissions,
-                  subSubitem.link ? (
-                    <div className="p-3" onClick={() => closeMobileNav()}>
-                      <Link to={`${subSubitem.link ?? "#"}`}>
-                        {subSubitem.label}
-                      </Link>
-                    </div>
-                  ) : (
-                    <span>{subSubitem.label}</span>
-                  ),
-                  subSubitem.key,
-                  <>
-                    <div className="flex items-center space-x-3">
-                      <MaterialIcon icon={subSubitem.icon} />
-                      {collapsed ? <span>{subSubitem.label}</span> : null}
-                    </div>
-                  </>
-                )
-              )
+      item.subLink.map((subitem: any) =>
+        getItem(
+          fonction,
+          subitem.permissions,
+          subitem.link ? (
+            <div className="p-3" onClick={() => closeMobileNav()}>
+              <Link to={`${subitem.link ?? "#"}`}>{subitem.label}</Link>
+            </div>
+          ) : item.type && collapsed ? null : (
+            <span className="p-3">{subitem.label}</span>
+          ),
+          subitem.key,
+          <>
+            <div className="flex items-center space-x-3">
+              <MaterialIcon icon={subitem.icon} />
+              {!item.type && collapsed ? <span>{subitem.label}</span> : null}
+            </div>
+          </>,
+          subitem.type || undefined,
+          subitem.subLink &&
+          subitem.subLink.map((subSubitem: any) =>
+            getItem(
+              fonction,
+              subSubitem.permissions,
+              subSubitem.link ? (
+                <div className="p-3" onClick={() => closeMobileNav()}>
+                  <Link to={`${subSubitem.link ?? "#"}`}>
+                    {subSubitem.label}
+                  </Link>
+                </div>
+              ) : (
+                <span>{subSubitem.label}</span>
+              ),
+              subSubitem.key,
+              <>
+                <div className="flex items-center space-x-3">
+                  <MaterialIcon icon={subSubitem.icon} />
+                  {collapsed ? <span>{subSubitem.label}</span> : null}
+                </div>
+              </>
+            )
           )
         )
+      )
     )
   );
 
@@ -127,17 +126,18 @@ function SideNavContent(props: any) {
     return false;
   });
 
+  console.log(itemsFinal);
+
   return (
     <>
       <Menu
         mode="inline"
         style={{ height: "100%", width: "100%", borderRight: 0 }}
         inlineCollapsed={collapsed}
-        defaultSelectedKeys={[routeInfo?.key]}
-        defaultOpenKeys={setDefaultOpen(routeInfo?.key)}
+        defaultSelectedKeys={['cars']}
         className={`${hideGroupTitle ? "hide-group-title" : ""}`}
         items={itemsFinal}
-        selectedKeys={[activeKey]}
+        // selectedKeys={[activeKey]}
       />
     </>
   );
@@ -146,7 +146,7 @@ function SideNavContent(props: any) {
 function MenuContent(props: any) {
   return (
     <div className="flex relative flex-col h-full justify-around">
-      <SideNavContent />
+      <SideNavContent props={props} />
       <div className=" bottom-0 absolute left-0 right-0 ">
       </div>
     </div>

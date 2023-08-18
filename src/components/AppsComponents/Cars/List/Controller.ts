@@ -1,4 +1,5 @@
 import { useGetCarsQuery } from "@redux/feature/services/carsSlice";
+import { formatAmountToFCFA } from "@utils/functions/transform-money";
 
 export interface Car {
   id: number;
@@ -17,7 +18,15 @@ export interface Car {
   image4: string;
 }
 export default function ControllerListCars() {
-  const { data = [], isFetching, isError, error }: any = useGetCarsQuery(null);
+  const {
+    data = [],
+    isFetching,
+    isError,
+    error,
+  }: any = useGetCarsQuery(null, {
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   const filteredList: never[] =
     data &&
@@ -30,14 +39,13 @@ export default function ControllerListCars() {
       motor: item?.motor,
       mileage: item?.mileage,
       box: item?.box,
-      price_with_driver: item?.price_with_driver,
-      price_no_driver: item?.price_no_driver,
+      price_with_driver: formatAmountToFCFA(item?.price_with_driver),
+      price_no_driver: formatAmountToFCFA(item?.price_no_driver),
       image1: item?.image1,
       image2: item?.image2,
       image3: item?.image3,
       image4: item?.image4,
     }));
-
 
   return {
     filteredList,

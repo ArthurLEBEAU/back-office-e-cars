@@ -1,6 +1,7 @@
 import AText from "@components/SharedComponents/AtomicComponents/Text";
 import { useCancelRequestMutation, useConfirmRequestMutation } from "@redux/feature/services/requestSlice";
 import { setSearch } from "@redux/feature/slices/search_paginate_slice";
+import { formatAmountToFCFA } from "@utils/functions/transform-money";
 import antdutils from "@utils/systemutils/antdutils";
 import { Button, Col, Divider, Drawer, Input, notification, Popconfirm, Row, Space, Tag } from "antd";
 import { useState } from "react";
@@ -178,28 +179,28 @@ function AccessFiche({ data, title }: { data: any, title: string }) {
           <Col span={12}>
             <div className="space-y-1">
               <AText bold>Chauffeur ?</AText>
-              <Tag color="volcano">Non</Tag>
+              <Tag color={data.isDriver ? 'purple' : 'volcano'}>{data.isDriver ? 'Oui' : "Non"}</Tag>
             </div>
           </Col>
 
           <Col span={12}>
             <div className="space-y-1">
               <AText bold>Livraison ?</AText>
-              <Tag color="volcano">Non</Tag>
+              <Tag color={data.isDelivery ? 'purple' : 'volcano'}>{data.isDelivery ? 'Oui' : "Non"}</Tag>
             </div>
           </Col>
 
           <Col span={12}>
             <div className="space-y-1">
               <AText bold>Sortie de ville ?</AText>
-              <Tag color="purple">Oui</Tag>
+              <Tag color={data.isGoOutCity ? 'purple' : 'volcano'}>{data.isGoOutCity ? 'Oui' : "Non"}</Tag>
             </div>
           </Col>
 
           <Col span={12}>
             <div className="space-y-1">
-              <AText bold>Estimation de tarif</AText>
-              <AText>1 500 000 FCFA</AText>
+              <AText bold>Estimation du tarif</AText>
+              <AText>{data.tarif}</AText>
             </div>
           </Col>
 
@@ -252,13 +253,13 @@ function AccessFiche({ data, title }: { data: any, title: string }) {
           <Col span={12}>
             <div className="space-y-1">
               <AText bold>Prix sans chauffeur </AText>
-              <AText>{data.car.price_no_driver}</AText>
+              <AText> {formatAmountToFCFA(data.car.price_no_driver)}</AText>
             </div>
           </Col>
           <Col span={12}>
             <div className="space-y-1">
               <AText bold>Prix avec chauffeur </AText>
-              <AText>{data.car.price_with_driver}</AText>
+              <AText> {formatAmountToFCFA(data.car.price_with_driver)}</AText>
             </div>
           </Col>
         </Row>
