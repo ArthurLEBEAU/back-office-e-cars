@@ -8,7 +8,7 @@ interface Client {
   phone: string;
 }
 interface Request {
-  id: number;
+  id: string;
   outOfDate: string;
   comeBackDate: string;
   isDriver: boolean;

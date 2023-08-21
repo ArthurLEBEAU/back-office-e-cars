@@ -47,7 +47,7 @@ export const RequestConfig: any = [
     render: (
       _: any,
       record: {
-        id: number;
+        id: string;
       }
     ) => <AccessFiche data={record} title={`Détail demande`} />,
   },
